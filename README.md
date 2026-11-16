@@ -108,7 +108,7 @@ Python 3.13.5, with pandas 2.2.3, numpy 2.2.4, matplotlib 3.10.3 and scipy 1.16.
 
 ## Tools used
 
-The code, tests and prose here were drafted with an AI assistant. It wrote the package modules, the pytest suite, this README, `docs/METHODS.md` and the architecture diagram; I set the questions and the reporting priorities, and reviewed the numbers and the wording. The git history shows what changed after the first drafts.
+The code, tests and prose here were drafted with an AI coding assistant in OpenCode (DeepSeek V4.1 Flash). It wrote the package modules, the pytest suite, this README, `docs/METHODS.md` and the architecture diagram; I set the questions and the reporting priorities, and reviewed the numbers and the wording. The git history shows what changed after the first drafts.
 
 A disclosure is hard to verify on its own, so the work is built to be checked instead: every headline number in `MEMO.md` is asserted in `tests/test_questions.py`, `outputs/data_quality.json` records the 14 checks, and `python -m job_board_analysis` regenerates all 14 files.
 

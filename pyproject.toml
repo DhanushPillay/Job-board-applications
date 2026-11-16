@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "job-board-analysis"
+version = "1.0.0"
+description = "Analysis of 1,200 synthetic job-board applications, July-September 2026"
+requires-python = ">=3.11"
+dependencies = [
+  "matplotlib==3.10.3",
+  "numpy==2.2.4",
+  "pandas==2.2.3",
+  "scipy==1.16.0",
+]
+
+[dependency-groups]
+dev = [
+  "pytest==9.0.2",
+  "pytest-cov==7.1.0",
+  "ruff==0.16.5",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "C4", "PIE", "RUF"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra --strict-markers --cov=analysis --cov-report=term-missing"
+
+[tool.coverage.run]
+branch = true
+source = ["analysis"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 90
+
+[tool.setuptools]
+py-modules = ["analysis", "run_all"]

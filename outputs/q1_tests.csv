@@ -1,0 +1,5 @@
+comparison,referral_hires,referral_n,other_hires,other_n,p_value,p_adjusted
+referral vs email,13,121,13,160,0.534,0.534
+referral vs search,13,121,25,439,0.0646,0.0861
+referral vs college,13,121,7,208,0.0145,0.0289
+referral vs social,13,121,6,257,0.00145,0.00579

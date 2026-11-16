@@ -1,0 +1,7 @@
+source,applications,hires,hires_per_100,ci_low,ci_high,role_standardised_per_100,analysis_group
+referral,121,13,10.74,6.39,17.52,11.11,ranked
+email,160,13,8.12,4.81,13.4,8.37,ranked
+search,439,25,5.69,3.89,8.27,5.78,ranked
+college,208,7,3.37,1.64,6.78,4.11,ranked
+social,257,6,2.33,1.07,5.0,2.36,ranked
+unknown,15,0,0.0,0.0,20.39,0.0,excluded_missing_source

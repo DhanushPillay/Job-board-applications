@@ -1,0 +1,4 @@
+*.csv -text
+*.json -text
+*.pdf binary
+*.png binary

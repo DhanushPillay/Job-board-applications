@@ -97,7 +97,7 @@ def make_chart(df: pd.DataFrame, out_dir: Path | str = DEFAULT_OUT) -> Path:
         0.045,
         "Paid = stipend above INR 0. Blank reply dates are treated as no reply by 30 September 2026.\n"
         "Source: supplied job-board dataset, after removing exact duplicate rows. "
-        "Chart: job_board_analysis.chart.",
+        "Regenerate with python -m job_board_analysis.",
         fontsize=8,
         color="#64748B",
         ha="left",

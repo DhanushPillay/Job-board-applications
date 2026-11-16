@@ -12,6 +12,12 @@ I analysed 1,200 cleaned applications from July to September 2026 to answer thre
 
 These are associations in one synthetic extract, not causal effects. The memo covers what I would and would not trust.
 
+## The chart
+
+![Cumulative share of applications with a first reply, paid versus unpaid roles](outputs/chart_reply_speed.png)
+
+Cumulative share of applications that had a first reply by each day after applying, July to September 2026. Paid roles pass their median of 3 days before unpaid roles reach 7, and the gap never closes: the curves finish at 86.9% and 70.4%, which is the never-replied split in Q3.
+
 ## Project layout
 
 ```
@@ -99,3 +105,10 @@ No rows were dropped for being outliers, and no values were imputed. The only ro
 The method is in `docs/METHODS.md`: formulas, confidence intervals, multiple-testing correction, robustness checks and limitations. In short, Q1 uses hires per 100 with Wilson intervals and direct role standardisation; Q2 compares shortlist rates for 4 versus 0-3 steps with a Newcombe interval for the difference; Q3 compares paid and unpaid roles with Mann-Whitney, chi-square and a Newcombe interval for the never-reply gap.
 
 Python 3.13.5, with pandas 2.2.3, numpy 2.2.4, matplotlib 3.10.3 and scipy 1.16.0 pinned in `pyproject.toml`; dependencies are declared once, in the `[project]` table, and the package lives under `src/`. The dataset is synthetic; no names, colleges or photos are included. The test suite covers the schema contract, cleaning, statistical helpers, the three questions, generated tables, chart dimensions and rerun determinism, with a 90% coverage floor. The workflow runs the same checks on Python 3.13.
+
+## Tools used
+
+The code, tests and prose here were drafted with an AI assistant. It wrote the package modules, the pytest suite, this README, `docs/METHODS.md` and the architecture diagram; I set the questions and the reporting priorities, and reviewed the numbers and the wording. The git history shows what changed after the first drafts.
+
+A disclosure is hard to verify on its own, so the work is built to be checked instead: every headline number in `MEMO.md` is asserted in `tests/test_questions.py`, `outputs/data_quality.json` records the 14 checks, and `python -m job_board_analysis` regenerates all 14 files.
+

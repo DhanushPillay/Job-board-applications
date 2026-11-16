@@ -12,20 +12,38 @@ I analysed 1,200 cleaned applications from July to September 2026 to answer thre
 
 These are associations in one synthetic extract, not causal effects. The memo covers what I would and would not trust.
 
-## Files
+## Project layout
+
+```
+.
+├── src/job_board_analysis/
+│   ├── __init__.py       public surface and version
+│   ├── __main__.py       python -m job_board_analysis
+│   ├── cli.py            argument parsing and the end-to-end run
+│   ├── config.py         project paths and the domain vocabulary
+│   ├── console.py        run log to stdout and summary.txt
+│   ├── contracts.py      schema validation and cleaning
+│   ├── stats.py          Wilson and Newcombe intervals
+│   ├── quality.py        14 checks across 7 dimensions
+│   ├── questions.py      Q1-Q3 and the reply-speed statistics
+│   ├── chart.py          the cumulative reply-speed figure
+│   └── report.py         ten CSVs, results.md and the run log
+├── tests/                pytest suite and fixtures
+├── data/                 supplied CSV and data dictionary
+├── docs/                 methods note and architecture diagram
+├── outputs/              generated artefacts, committed for review
+├── MEMO.md               two-page manager note
+└── pyproject.toml        dependencies, entry point, tool config
+```
 
 | Path | What it is |
 |---|---|
 | `data/job-board-applications.csv` | Supplied dataset, unchanged (1,206 rows). |
 | `data/data_dictionary.md` | Columns, allowed values, missingness rules and the cleaning log. |
-| `analysis.py` | Cleaning, validation, the three analyses, data-quality report, chart and tables. |
-| `run_all.py` | One-command runner for the analysis. |
 | `outputs/` | Ten analysis CSVs, `results.md`, `summary.txt`, `data_quality.json` and the chart. |
-| `MEMO.md` | The manager note (about 225 words). |
 | `docs/METHODS.md` | Estimands, cleaning decisions, tests, robustness checks and limitations. |
-| `docs/architecture.png` | Pipeline diagram: applications CSV through analysis to outputs, with tests and CI. |
-| `tests/` | Pytest suite for helpers, cleaning, the three questions, outputs and determinism. |
-| `pyproject.toml` | Pinned dependencies, ruff and pytest configuration. |
+| `docs/architecture.png` | Pipeline diagram: CSV through the package modules to `outputs/`, with tests and CI. |
+| `tests/` | Schema contract, statistical helpers, the three questions, outputs and determinism. |
 | `.github/workflows/ci.yml` | Format, lint, tests and the full pipeline on every push or pull request. |
 
 ## How to run
@@ -34,22 +52,20 @@ Tested with Python 3.13.5 on Windows. From this folder:
 
 ```bash
 python -m pip install -e . --group dev
-python run_all.py
+python -m job_board_analysis
 ```
 
-The install step needs pip 25.1 or newer for dependency groups. `run_all.py` writes the 14 files in `outputs/`. The default input is `data/job-board-applications.csv`; the default output folder is `outputs/`. Paths can be changed without editing code:
+The install step needs pip 25.1 or newer for dependency groups. It also adds a `job-board-analysis` console script. Either entry point writes the 14 files in `outputs/`. The default input is `data/job-board-applications.csv`; the default output folder is `outputs/`. Paths can be changed without editing code:
 
 ```bash
-python run_all.py --data path/to/applications.csv --out path/to/outputs
+python -m job_board_analysis --data path/to/applications.csv --out path/to/outputs
 ```
 
-To analyse a different extract, add `--no-expected-checks`:
+To analyse a different extract, add `--no-expected-checks`. Structural checks still run; the assertions tied to the supplied 1,206-row file are relaxed.
 
 ```bash
-python run_all.py --data path/to/new-extract.csv --out outputs-new --no-expected-checks
+python -m job_board_analysis --data path/to/new-extract.csv --out outputs-new --no-expected-checks
 ```
-
-Structural checks still run; the supplied-file counts are relaxed.
 
 Quality gates:
 
@@ -59,7 +75,7 @@ python -m ruff format --check .
 python -m ruff check .
 ```
 
-The analysis uses no randomness, no network and no absolute paths. In this environment, a second run produces byte-identical CSVs, Markdown, JSON and chart files. With the default settings, the script stops if the supplied file no longer matches the expected row counts, so a changed input does not silently change the answers.
+The analysis uses no randomness, no network and no timestamps. In this environment, a second run produces byte-identical CSVs, Markdown, JSON and chart files. With the default settings, the run stops if the supplied file no longer matches the expected row counts, so a changed input does not silently change the answers.
 
 ## Data cleaning
 
@@ -82,4 +98,4 @@ No rows were dropped for being outliers, and no values were imputed. The only ro
 
 The method is in `docs/METHODS.md`: formulas, confidence intervals, multiple-testing correction, robustness checks and limitations. In short, Q1 uses hires per 100 with Wilson intervals and direct role standardisation; Q2 compares shortlist rates for 4 versus 0-3 steps with a Newcombe interval for the difference; Q3 compares paid and unpaid roles with Mann-Whitney, chi-square and a Newcombe interval for the never-reply gap.
 
-Python 3.13.5, with pandas 2.2.3, numpy 2.2.4, matplotlib 3.10.3 and scipy 1.16.0 pinned in `pyproject.toml`. The dataset is synthetic; no names, colleges or photos are included. The test suite covers the helpers, cleaning contract, the three questions, generated tables, chart dimensions and rerun determinism, with a 90% coverage floor. The workflow runs the same checks on Python 3.13.
+Python 3.13.5, with pandas 2.2.3, numpy 2.2.4, matplotlib 3.10.3 and scipy 1.16.0 pinned in `pyproject.toml`; dependencies are declared once, in the `[project]` table, and the package lives under `src/`. The dataset is synthetic; no names, colleges or photos are included. The test suite covers the schema contract, cleaning, statistical helpers, the three questions, generated tables, chart dimensions and rerun determinism, with a 90% coverage floor. The workflow runs the same checks on Python 3.13.

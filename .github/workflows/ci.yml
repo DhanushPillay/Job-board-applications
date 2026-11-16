@@ -19,7 +19,7 @@ jobs:
       - run: ruff format --check .
       - run: ruff check .
       - run: python -m pytest
-      - run: python run_all.py
+      - run: python -m job_board_analysis
       - uses: actions/upload-artifact@v4
         with:
           name: job-board-outputs

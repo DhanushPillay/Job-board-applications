@@ -47,14 +47,14 @@ The never-replied share is right-censored: a blank means "not yet by 30 Septembe
 
 ## Data quality
 
-`analysis.py` checks completeness, uniqueness, validity, consistency, timeliness, distribution and accuracy before estimation. Results are in `outputs/data_quality.json`. A hard failure stops the run; warnings are reported, not silently repaired. Accuracy is not assessed because there is no independent source.
+`job_board_analysis.quality` checks completeness, uniqueness, validity, consistency, timeliness, distribution and accuracy before estimation. Results are in `outputs/data_quality.json`. A hard failure stops the run; warnings are reported, not silently repaired. Accuracy is not assessed because there is no independent source.
 
 ## Reproducibility
 
 - Fixed input in `data/`; no network, randomness or timestamps in outputs.
 - Dependencies are pinned in `pyproject.toml`.
-- `python run_all.py` writes every file in `outputs/` for the supplied extract. `--no-expected-checks` relaxes the expected row counts and still writes the same outputs.
-- `pytest` covers the helpers, cleaning contract, the three questions, output generation and rerun determinism.
+- `python -m job_board_analysis` writes every file in `outputs/` for the supplied extract. `--no-expected-checks` relaxes the expected row counts and still writes the same outputs.
+- `pytest` covers the schema contract, cleaning, statistical helpers, the three questions, output generation and rerun determinism.
 - The CSVs, JSON and chart PNG have been byte-identical across reruns in this environment.
 
 ## Limitations

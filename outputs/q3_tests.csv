@@ -1,0 +1,2 @@
+median_diff_days,mean_diff_days,never_reply_diff_pp,never_reply_diff_ci_low_pp,never_reply_diff_ci_high_pp,mannwhitney_u,mannwhitney_p,never_reply_chi2,never_reply_p
+4.0,4.4,16.53,11.78,21.39,34260.0,7.46e-67,48.595897640693806,3.15e-12

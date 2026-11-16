@@ -1,0 +1,9 @@
+scope,group,applications,never_replied,never_replied_pct,median_days,mean_days,ci_low,ci_high
+month 2026-07,paid,261,30,11.49,3.0,3.19,8.17,15.93
+month 2026-07,unpaid,137,37,27.01,7.0,7.69,20.27,34.99
+month 2026-08,paid,215,33,15.35,3.0,3.32,11.14,20.77
+month 2026-08,unpaid,167,57,34.13,6.0,7.59,27.37,41.61
+month 2026-09,paid,258,33,12.79,3.0,3.17,9.25,17.42
+month 2026-09,unpaid,162,44,27.16,7.0,7.6,20.9,34.48
+matured >=21 days,paid,547,70,12.8,3.0,3.25,10.25,15.86
+matured >=21 days,unpaid,352,107,30.4,7.0,7.83,25.83,35.39

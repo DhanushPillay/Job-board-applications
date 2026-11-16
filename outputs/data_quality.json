@@ -1,0 +1,125 @@
+{
+  "dataset": "job-board-applications.csv",
+  "rows_raw": 1206,
+  "rows_clean": 1200,
+  "checks": [
+    {
+      "dimension": "completeness",
+      "check": "core_fields_present",
+      "status": "pass",
+      "observed": "0 null(s) across 9 fields",
+      "expectation": "0 nulls",
+      "detail": "source and reply date are assessed separately."
+    },
+    {
+      "dimension": "completeness",
+      "check": "source_missing",
+      "status": "warn",
+      "observed": "15 of 1,200 (1.25%)",
+      "expectation": "0 missing",
+      "detail": "Labelled unknown and excluded from source comparisons; none were hired."
+    },
+    {
+      "dimension": "completeness",
+      "check": "reply_date_missing",
+      "status": "warn",
+      "observed": "234 of 1,200 (19.50%)",
+      "expectation": "Structural missingness is allowed",
+      "detail": "Treated as no reply by 30 September 2026; not imputed."
+    },
+    {
+      "dimension": "uniqueness",
+      "check": "application_id_unique",
+      "status": "pass",
+      "observed": "1,200 unique IDs",
+      "expectation": "One row per application_id",
+      "detail": ""
+    },
+    {
+      "dimension": "uniqueness",
+      "check": "exact_duplicates_removed",
+      "status": "pass",
+      "observed": "6 exact duplicate row(s)",
+      "expectation": "6 in the supplied file",
+      "detail": "Dropped before analysis; 1,206 -> 1,200 rows."
+    },
+    {
+      "dimension": "validity",
+      "check": "categorical_domains",
+      "status": "pass",
+      "observed": "6 roles, 3 work modes, 5 ranked sources + unknown",
+      "expectation": "Allowed categories only",
+      "detail": ""
+    },
+    {
+      "dimension": "validity",
+      "check": "numeric_ranges",
+      "status": "pass",
+      "observed": "steps 0-4; stipend >= 0; reply days 1-32 when present",
+      "expectation": "Ranges match the data dictionary",
+      "detail": ""
+    },
+    {
+      "dimension": "validity",
+      "check": "application_dates",
+      "status": "pass",
+      "observed": "2026-07-01 to 2026-09-30",
+      "expectation": "2026-07-01 to 2026-09-30",
+      "detail": ""
+    },
+    {
+      "dimension": "consistency",
+      "check": "funnel_order",
+      "status": "pass",
+      "observed": "269 shortlisted, 175 interviewed, 64 hired",
+      "expectation": "hired subset of interviewed subset of shortlisted",
+      "detail": ""
+    },
+    {
+      "dimension": "consistency",
+      "check": "no_reply_rows_not_shortlisted",
+      "status": "pass",
+      "observed": "234 rows without a reply date",
+      "expectation": "No shortlisted row has a blank reply date",
+      "detail": ""
+    },
+    {
+      "dimension": "timeliness",
+      "check": "snapshot_coverage",
+      "status": "pass",
+      "observed": "snapshot ends 2026-09-30",
+      "expectation": "30 September 2026 snapshot",
+      "detail": ""
+    },
+    {
+      "dimension": "distribution",
+      "check": "paid_unpaid_split",
+      "status": "pass",
+      "observed": "734 paid, 466 unpaid",
+      "expectation": "734 paid, 466 unpaid in the supplied file",
+      "detail": ""
+    },
+    {
+      "dimension": "distribution",
+      "check": "role_coverage",
+      "status": "pass",
+      "observed": "6 of 6 roles present",
+      "expectation": "All six role categories present",
+      "detail": ""
+    },
+    {
+      "dimension": "accuracy",
+      "check": "source_of_truth_reconciliation",
+      "status": "not_assessed",
+      "observed": "No independent source",
+      "expectation": "Reconcile against the source system",
+      "detail": "Not possible with the supplied synthetic extract."
+    }
+  ],
+  "summary": {
+    "pass": 11,
+    "warn": 2,
+    "fail": 0,
+    "not_assessed": 1
+  }
+}

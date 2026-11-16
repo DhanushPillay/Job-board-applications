@@ -1,0 +1,35 @@
+Job board applications: analysis
+====================================================
+Raw rows 1206; removed 6 exact duplicates; analysing 1200.
+Fixed 9 work-mode labels; 15 missing sources labelled unknown; 234 blank reply dates treated as no reply.
+Data quality: 11 pass, 2 warning, 0 fail, 1 not assessed.
+
+Q1. Hires per 100 applications by source
+  referral  121 apps   13 hires   10.7 per 100  (95% CI  6.4-17.5)  role-standardised  11.1
+  email     160 apps   13 hires    8.1 per 100  (95% CI  4.8-13.4)  role-standardised   8.4
+  search    439 apps   25 hires    5.7 per 100  (95% CI  3.9- 8.3)  role-standardised   5.8
+  college   208 apps    7 hires    3.4 per 100  (95% CI  1.6- 6.8)  role-standardised   4.1
+  social    257 apps    6 hires    2.3 per 100  (95% CI  1.1- 5.0)  role-standardised   2.4
+  unknown    15 apps    0 hires    0.0 per 100  (95% CI  0.0-20.4)  role-standardised   0.0
+  Fisher exact vs referral: email p=0.534 (BH 0.534); search p=0.0646 (BH 0.0861); college p=0.0145 (BH 0.0289); social p=0.00145 (BH 0.00579)
+  Role leaders:
+    Software   email     11.4 per 100
+    Data       search     7.4 per 100
+    Design     referral  23.1 per 100
+    Marketing  referral  22.2 per 100
+    Finance    search     2.9 per 100
+    Operations college   20.0 per 100
+
+Q2. Shortlisting by application-step completion
+  all 4 steps   403 apps  195 shortlisted   48.4%  (95% CI 43.5-53.3)
+  0-3 steps     797 apps   74 shortlisted    9.3%  (95% CI  7.5-11.5)
+  Difference: +39.1 pp (95% CI 33.8-44.3); risk ratio 5.21; chi-square p 1.3e-52
+  By role gap: Software +34.9 pp, Data +41.2 pp, Design +49.0 pp, Marketing +41.9 pp, Finance +39.7 pp, Operations +35.9 pp (max BH p 2.2e-05)
+
+Q3. Reply speed, paid vs unpaid roles
+  paid    734 apps   638 replied  never  96 (13.1%, 95% CI 10.8-15.7%)  median  3.0d  mean  3.2d  p90  6.0d
+  unpaid  466 apps   328 replied  never 138 (29.6%, 95% CI 25.6-33.9%)  median  7.0d  mean  7.6d  p90 14.0d
+  Median gap 4.0d; never-reply gap 16.5 pp (95% CI 11.8-21.4); Mann-Whitney p 7.5e-67
+
+
+Chart: chart_reply_speed.png

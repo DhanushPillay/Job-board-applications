@@ -1,6 +1,6 @@
 # Job board applications: three questions
 
-I analysed 1,200 cleaned applications from July to September 2026 to answer three questions about sourcing, the application funnel and reply speed. The short version is in `MEMO.md`, the tables are in `outputs/results.md`, the method and caveats are in `docs/METHODS.md`, and the pipeline is drawn in `docs/architecture.html`.
+I analysed 1,200 cleaned applications from July to September 2026 to answer three questions about sourcing, the application funnel and reply speed. The short version is in `MEMO.md`, the tables are in `outputs/results.md`, the method and caveats are in `docs/METHODS.md`, and the pipeline is drawn in `docs/architecture.png`.
 
 ## Answers
 
@@ -23,7 +23,7 @@ These are associations in one synthetic extract, not causal effects. The memo co
 | `outputs/` | Ten analysis CSVs, `results.md`, `summary.txt`, `data_quality.json` and the chart. |
 | `MEMO.md` | The manager note (about 225 words). |
 | `docs/METHODS.md` | Estimands, cleaning decisions, tests, robustness checks and limitations. |
-| `docs/architecture.html` | Pipeline diagram: inline SVG, self-contained, renders offline. |
+| `docs/architecture.png` | Pipeline diagram: applications CSV through analysis to outputs, with tests and CI. |
 | `tests/` | Pytest suite for helpers, cleaning, the three questions, outputs and determinism. |
 | `pyproject.toml` | Pinned dependencies, ruff and pytest configuration. |
 | `.github/workflows/ci.yml` | Format, lint, tests and the full pipeline on every push or pull request. |

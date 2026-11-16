@@ -6,8 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-import analysis
-import run_all
+import job_board_analysis as analysis
 
 EXPECTED_OUTPUTS = {
     "q1_source_rates.csv",
@@ -91,23 +90,4 @@ def test_cli_no_expected_checks(tmp_path, data_path):
     )
     assert code == 0
     assert (out / "results.md").exists()
-    assert "1,199 applications analysed" in (out / "results.md").read_text(encoding="utf-8")
-
-
-def test_run_all_writes_subset_outputs(tmp_path, data_path):
-    subset = tmp_path / "subset.csv"
-    raw = pd.read_csv(data_path, dtype=str).drop_duplicates().iloc[1:]
-    raw.to_csv(subset, index=False)
-    out = tmp_path / "run-all-out"
-    code = run_all.cli(
-        [
-            "--data",
-            str(subset),
-            "--out",
-            str(out),
-            "--no-expected-checks",
-        ]
-    )
-    assert code == 0
-    assert {path.name for path in out.iterdir()} == EXPECTED_OUTPUTS
     assert "1,199 applications analysed" in (out / "results.md").read_text(encoding="utf-8")

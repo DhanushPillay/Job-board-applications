@@ -3,7 +3,7 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-import analysis
+import job_board_analysis as analysis
 
 
 def test_cleaning_counts(cleaned):

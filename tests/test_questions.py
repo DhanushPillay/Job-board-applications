@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-import analysis
+import job_board_analysis as analysis
 
 
 def test_q1_source_ranking(cleaned):

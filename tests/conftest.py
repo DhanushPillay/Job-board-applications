@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-import analysis
+import job_board_analysis as analysis
 
 
 @pytest.fixture(scope="session")

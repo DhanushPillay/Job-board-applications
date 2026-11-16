@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "job-board-analysis"
 version = "1.0.0"
 description = "Analysis of 1,200 synthetic job-board applications, July-September 2026"
+readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
   "matplotlib==3.10.3",
@@ -13,6 +14,9 @@ dependencies = [
   "pandas==2.2.3",
   "scipy==1.16.0",
 ]
+
+[project.scripts]
+job-board-analysis = "job_board_analysis.cli:cli"
 
 [dependency-groups]
 dev = [
@@ -31,16 +35,16 @@ ignore = ["E501"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["."]
-addopts = "-ra --strict-markers --cov=analysis --cov-report=term-missing"
+pythonpath = ["src"]
+addopts = "-ra --strict-markers --cov=job_board_analysis --cov-report=term-missing"
 
 [tool.coverage.run]
 branch = true
-source = ["analysis"]
+source = ["job_board_analysis"]
 
 [tool.coverage.report]
 show_missing = true
 fail_under = 90
 
-[tool.setuptools]
-py-modules = ["analysis", "run_all"]
+[tool.setuptools.packages.find]
+where = ["src"]
